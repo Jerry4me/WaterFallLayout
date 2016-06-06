@@ -15,6 +15,7 @@
 		33FD94231D056C5B004E12D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FD94211D056C5B004E12D9 /* LaunchScreen.storyboard */; };
 		33FD942E1D056C5B004E12D9 /* WaterFallLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD942D1D056C5B004E12D9 /* WaterFallLayoutTests.m */; };
 		33FD94391D056C5B004E12D9 /* WaterFallLayoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD94381D056C5B004E12D9 /* WaterFallLayoutUITests.m */; };
+		33FD94481D056DA0004E12D9 /* JRWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD94471D056DA0004E12D9 /* JRWaterFallLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		33FD94341D056C5B004E12D9 /* WaterFallLayoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaterFallLayoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FD94381D056C5B004E12D9 /* WaterFallLayoutUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterFallLayoutUITests.m; sourceTree = "<group>"; };
 		33FD943A1D056C5B004E12D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33FD94461D056DA0004E12D9 /* JRWaterFallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRWaterFallLayout.h; path = ../JRWaterFallLayout.h; sourceTree = "<group>"; };
+		33FD94471D056DA0004E12D9 /* JRWaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRWaterFallLayout.m; path = ../JRWaterFallLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		33FD94121D056C5B004E12D9 /* WaterFallLayout */ = {
 			isa = PBXGroup;
 			children = (
+				33FD94491D056DBC004E12D9 /* WaterFall */,
 				33FD94161D056C5B004E12D9 /* AppDelegate.h */,
 				33FD94171D056C5B004E12D9 /* AppDelegate.m */,
 				33FD94191D056C5B004E12D9 /* ViewController.h */,
@@ -138,6 +142,15 @@
 				33FD943A1D056C5B004E12D9 /* Info.plist */,
 			);
 			path = WaterFallLayoutUITests;
+			sourceTree = "<group>";
+		};
+		33FD94491D056DBC004E12D9 /* WaterFall */ = {
+			isa = PBXGroup;
+			children = (
+				33FD94461D056DA0004E12D9 /* JRWaterFallLayout.h */,
+				33FD94471D056DA0004E12D9 /* JRWaterFallLayout.m */,
+			);
+			path = WaterFall;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +285,7 @@
 			files = (
 				33FD941B1D056C5B004E12D9 /* ViewController.m in Sources */,
 				33FD94181D056C5B004E12D9 /* AppDelegate.m in Sources */,
+				33FD94481D056DA0004E12D9 /* JRWaterFallLayout.m in Sources */,
 				33FD94151D056C5B004E12D9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
