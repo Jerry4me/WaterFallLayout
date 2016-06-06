@@ -20,7 +20,7 @@
 
 
 /**
- *  返回rect范围内的item的布局
+ *  返回rect范围内的item的布局数组, (这个方法会频繁调用)
  */
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
 {

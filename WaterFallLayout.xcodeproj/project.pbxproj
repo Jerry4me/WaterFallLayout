@@ -16,6 +16,9 @@
 		33FD942E1D056C5B004E12D9 /* WaterFallLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD942D1D056C5B004E12D9 /* WaterFallLayoutTests.m */; };
 		33FD94391D056C5B004E12D9 /* WaterFallLayoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD94381D056C5B004E12D9 /* WaterFallLayoutUITests.m */; };
 		33FD94481D056DA0004E12D9 /* JRWaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD94471D056DA0004E12D9 /* JRWaterFallLayout.m */; };
+		33FD944E1D0571F1004E12D9 /* JRShop.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD944D1D0571F1004E12D9 /* JRShop.m */; };
+		33FD94521D0571F9004E12D9 /* JRShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD94501D0571F9004E12D9 /* JRShopCell.m */; };
+		33FD94531D0571F9004E12D9 /* JRShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FD94511D0571F9004E12D9 /* JRShopCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,11 @@
 		33FD943A1D056C5B004E12D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33FD94461D056DA0004E12D9 /* JRWaterFallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRWaterFallLayout.h; path = ../JRWaterFallLayout.h; sourceTree = "<group>"; };
 		33FD94471D056DA0004E12D9 /* JRWaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRWaterFallLayout.m; path = ../JRWaterFallLayout.m; sourceTree = "<group>"; };
+		33FD944C1D0571F1004E12D9 /* JRShop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRShop.h; sourceTree = "<group>"; };
+		33FD944D1D0571F1004E12D9 /* JRShop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRShop.m; sourceTree = "<group>"; };
+		33FD944F1D0571F9004E12D9 /* JRShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRShopCell.h; sourceTree = "<group>"; };
+		33FD94501D0571F9004E12D9 /* JRShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRShopCell.m; sourceTree = "<group>"; };
+		33FD94511D0571F9004E12D9 /* JRShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRShopCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +112,8 @@
 		33FD94121D056C5B004E12D9 /* WaterFallLayout */ = {
 			isa = PBXGroup;
 			children = (
+				33FD944A1D0571DC004E12D9 /* Cell */,
+				33FD944B1D0571E1004E12D9 /* Model */,
 				33FD94491D056DBC004E12D9 /* WaterFall */,
 				33FD94161D056C5B004E12D9 /* AppDelegate.h */,
 				33FD94171D056C5B004E12D9 /* AppDelegate.m */,
@@ -151,6 +161,26 @@
 				33FD94471D056DA0004E12D9 /* JRWaterFallLayout.m */,
 			);
 			path = WaterFall;
+			sourceTree = "<group>";
+		};
+		33FD944A1D0571DC004E12D9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				33FD944F1D0571F9004E12D9 /* JRShopCell.h */,
+				33FD94501D0571F9004E12D9 /* JRShopCell.m */,
+				33FD94511D0571F9004E12D9 /* JRShopCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		33FD944B1D0571E1004E12D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				33FD944C1D0571F1004E12D9 /* JRShop.h */,
+				33FD944D1D0571F1004E12D9 /* JRShop.m */,
+			);
+			name = Model;
+			path = Cell/Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33FD94231D056C5B004E12D9 /* LaunchScreen.storyboard in Resources */,
+				33FD94531D0571F9004E12D9 /* JRShopCell.xib in Resources */,
 				33FD94201D056C5B004E12D9 /* Assets.xcassets in Resources */,
 				33FD941E1D056C5B004E12D9 /* Main.storyboard in Resources */,
 			);
@@ -284,8 +315,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				33FD941B1D056C5B004E12D9 /* ViewController.m in Sources */,
+				33FD94521D0571F9004E12D9 /* JRShopCell.m in Sources */,
 				33FD94181D056C5B004E12D9 /* AppDelegate.m in Sources */,
 				33FD94481D056DA0004E12D9 /* JRWaterFallLayout.m in Sources */,
+				33FD944E1D0571F1004E12D9 /* JRShop.m in Sources */,
 				33FD94151D056C5B004E12D9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
