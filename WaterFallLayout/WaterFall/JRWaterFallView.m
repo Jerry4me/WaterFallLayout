@@ -11,11 +11,15 @@
 
 @interface JRWaterFallView()
 
+/** 重用标识 */
+//@property (nonatomic, copy) NSString *reuseID;
+
 @end
 
 @implementation JRWaterFallView
 
-+ (instancetype)waterFallViewWithFrame:(CGRect)frame delegate:(id<JRWaterFallLayoutDelegate>)delegate
+
++ (instancetype)waterFallViewWithFrame:(CGRect)frame delegate:(nonnull id<JRWaterFallLayoutDelegate>)delegate
 {
     // 创建瀑布流布局
     JRWaterFallLayout *layout = [[JRWaterFallLayout alloc] init];
@@ -25,5 +29,17 @@
     
     return waterFallView;
 }
+
+//- (void)jr_registerClass:(Class)Class forCellWithReuseIdentifier:(NSString *)identifier
+//{
+//    self.reuseID = identifier;
+//    [self registerClass:Class forCellWithReuseIdentifier:identifier];
+//}
+//
+//- (void)jr_registerNib:(UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier
+//{
+//    self.reuseID = identifier;
+//    [self registerNib:nib forCellWithReuseIdentifier:identifier];
+//}
 
 @end

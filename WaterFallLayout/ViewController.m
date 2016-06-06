@@ -39,21 +39,18 @@ static NSString *shopCellReuseID = @"shop";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 初始化collectionView
+    // 初始化瀑布流view
     [self setupCollectionView];
     
 }
 
 - (void)setupCollectionView
 {
-    // 创建瀑布流布局
-    JRWaterFallLayout *layout = [[JRWaterFallLayout alloc] init];
-    layout.delegate = self;
-    
-    // 创建瀑布流控件
-    JRWaterFallView *waterFallView = [[JRWaterFallView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    waterFallView.backgroundColor = [UIColor whiteColor];
+    // 创建瀑布流view
+    JRWaterFallView *waterFallView = [JRWaterFallView waterFallViewWithFrame:self.view.bounds delegate:self];
+    // 设置数据源
     waterFallView.dataSource = self;
+    waterFallView.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:waterFallView];
     self.waterFallView = waterFallView;
@@ -62,9 +59,11 @@ static NSString *shopCellReuseID = @"shop";
     [self.waterFallView registerNib:[UINib nibWithNibName:NSStringFromClass([JRShopCell class]) bundle:nil] forCellWithReuseIdentifier:shopCellReuseID];
     
     
+    
+    
     // 为瀑布流控件添加下拉加载和上拉加载
     self.waterFallView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 模拟网络请求
             
             // 清空数据
             [self.shops removeAllObjects];
@@ -83,8 +82,7 @@ static NSString *shopCellReuseID = @"shop";
     
     
     self.waterFallView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 模拟网络请求
             
             NSArray *moreShops = [JRShop mj_objectArrayWithFilename:@"shops.plist"];
             [self.shops addObjectsFromArray:moreShops];
@@ -106,7 +104,6 @@ static NSString *shopCellReuseID = @"shop";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     // 创建cell
     JRShopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:shopCellReuseID forIndexPath:indexPath];
     
@@ -116,7 +113,6 @@ static NSString *shopCellReuseID = @"shop";
     // 返回cell
     return cell;
 }
-
 
 #pragma mark - <JRWaterFallLayoutDelegate>
 /**
