@@ -7,16 +7,15 @@
 //
 
 #import "ViewController.h"
-#import "JRWaterFallLayout.h"
 #import "JRShop.h"
 #import "JRShopCell.h"
-#import "MJRefresh.h"
 #import "MJExtension.h"
+#import "JRWaterFallView.h"
 
-@interface ViewController () <UICollectionViewDataSource, JRWaterFallLayoutDelegate>
+@interface ViewController () <UICollectionViewDataSource>
 
 /** collectionView */
-@property (nonatomic, weak) UICollectionView *collectionView;
+@property (nonatomic, weak) JRWaterFallView *waterFallView;
 
 /** shops */
 @property (nonatomic, strong) NSMutableArray *shops;
@@ -45,26 +44,13 @@ static NSString *reuseIdentifier = @"shop";
 
 - (void)setupCollectionView
 {
-    // 创建瀑布流布局
-    JRWaterFallLayout *layout = [[JRWaterFallLayout alloc] init];
-    // 设置代理
-    layout.delegate = self;
+    JRWaterFallView *waterFallView = [[JRWaterFallView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:waterFallView];
+    self.waterFallView = waterFallView;
     
-    // 创建collectionView并且设置frame和layout
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    // 设置collectionView的数据源
-    collectionView.dataSource = self;
-    // 设置背景色
-    collectionView.backgroundColor = [UIColor whiteColor];
-    
-    [self.view addSubview:collectionView];
-    self.collectionView = collectionView;
-    
-    // 注册collectionViewCell
-    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([JRShopCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     
     // 为collectionView添加下拉加载和上拉加载
-    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             // 清空数据
@@ -96,7 +82,10 @@ static NSString *reuseIdentifier = @"shop";
             [self.collectionView.mj_footer endRefreshing];
         });
     }];
+    
+    
 }
+
 
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -116,33 +105,6 @@ static NSString *reuseIdentifier = @"shop";
     return cell;
 }
 
-#pragma mark - <JRWaterFallLayoutDelegate>
-- (CGFloat)waterFallLayout:(JRWaterFallLayout *)waterFallLayout heightForItemAtIndex:(NSUInteger)index width:(CGFloat)width
-{
-    JRShop *shop = self.shops[index];
-    CGFloat shopHeight = [shop.h doubleValue];
-    CGFloat shopWidth = [shop.w doubleValue];
-    return shopHeight * width / shopWidth;
-}
 
-//- (CGFloat)columnMarginOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout
-//{
-//    return 50;
-//}
-
-//- (NSUInteger)columnCountOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout
-//{
-//    return 4;
-//}
-
-//- (CGFloat)rowMarginOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout
-//{
-//    return 50;
-//}
-
-//- (UIEdgeInsets)edgeInsetsOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout
-//{
-//    return UIEdgeInsetsMake(30, 40, 50, 70);
-//}
 
 @end
