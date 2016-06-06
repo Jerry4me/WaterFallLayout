@@ -26,7 +26,7 @@
 
 @implementation ViewController
 
-static NSString *reuseIdentifier = @"shop";
+static NSString *shopCellReuseID = @"shop";
 
 - (NSMutableArray *)shops
 {
@@ -46,9 +46,11 @@ static NSString *reuseIdentifier = @"shop";
 
 - (void)setupCollectionView
 {
+    // 创建瀑布流布局
     JRWaterFallLayout *layout = [[JRWaterFallLayout alloc] init];
     layout.delegate = self;
     
+    // 创建瀑布流控件
     JRWaterFallView *waterFallView = [[JRWaterFallView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     waterFallView.backgroundColor = [UIColor whiteColor];
     waterFallView.dataSource = self;
@@ -57,10 +59,10 @@ static NSString *reuseIdentifier = @"shop";
     self.waterFallView = waterFallView;
     
     // 注册cell
-    [self.waterFallView registerNib:[UINib nibWithNibName:NSStringFromClass([JRShopCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.waterFallView registerNib:[UINib nibWithNibName:NSStringFromClass([JRShopCell class]) bundle:nil] forCellWithReuseIdentifier:shopCellReuseID];
     
     
-    // 为collectionView添加下拉加载和上拉加载
+    // 为瀑布流控件添加下拉加载和上拉加载
     self.waterFallView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
@@ -93,8 +95,6 @@ static NSString *reuseIdentifier = @"shop";
             [self.waterFallView.mj_footer endRefreshing];
         });
     }];
-    
-    
 }
 
 
@@ -106,8 +106,9 @@ static NSString *reuseIdentifier = @"shop";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     // 创建cell
-    JRShopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    JRShopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:shopCellReuseID forIndexPath:indexPath];
     
     // 给cell传递模型
     cell.shop = self.shops[indexPath.item];
@@ -118,6 +119,9 @@ static NSString *reuseIdentifier = @"shop";
 
 
 #pragma mark - <JRWaterFallLayoutDelegate>
+/**
+ *  返回每个item的高度
+ */
 - (CGFloat)waterFallLayout:(JRWaterFallLayout *)waterFallLayout heightForItemAtIndex:(NSUInteger)index width:(CGFloat)width
 {
     JRShop *shop = self.shops[index];

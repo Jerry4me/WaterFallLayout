@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol JRWaterFallLayoutDelegate;
 
 @interface JRWaterFallView : UICollectionView
+
+
++ (instancetype)waterFallViewWithFrame:(CGRect)frame delegate:(id<JRWaterFallLayoutDelegate>)delegate;
 
 
 @end

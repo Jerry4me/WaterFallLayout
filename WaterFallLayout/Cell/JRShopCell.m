@@ -26,4 +26,6 @@
     
     self.priceLabel.text = shop.price;
 }
+
+
 @end
