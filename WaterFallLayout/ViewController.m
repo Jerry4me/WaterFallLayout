@@ -41,9 +41,6 @@ static NSString *reuseIdentifier = @"shop";
     // 初始化collectionView
     [self setupCollectionView];
     
-    // 第一次进入则自动刷新头部
-    [self.collectionView.mj_header beginRefreshing];
-    
 }
 
 - (void)setupCollectionView
@@ -66,10 +63,11 @@ static NSString *reuseIdentifier = @"shop";
     // 注册collectionViewCell
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([JRShopCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // 为collectionView添加下拉和上拉加载
-    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            // 清空数组
+    // 为collectionView添加下拉加载和上拉加载
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            // 清空数据
             [self.shops removeAllObjects];
             
             NSArray *newShops = [JRShop mj_objectArrayWithFilename:@"shops.plist"];
@@ -81,12 +79,14 @@ static NSString *reuseIdentifier = @"shop";
             [self.collectionView.mj_header endRefreshing];
         });
     }];
+    // 第一次进入则自动加载
     [self.collectionView.mj_header beginRefreshing];
     
     
-    self.collectionView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            
             NSArray *moreShops = [JRShop mj_objectArrayWithFilename:@"shops.plist"];
             [self.shops addObjectsFromArray:moreShops];
             
@@ -124,5 +124,25 @@ static NSString *reuseIdentifier = @"shop";
     CGFloat shopWidth = [shop.w doubleValue];
     return shopHeight * width / shopWidth;
 }
+
+//- (CGFloat)columnMarginOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout
+//{
+//    return 50;
+//}
+
+//- (NSUInteger)columnCountOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout
+//{
+//    return 4;
+//}
+
+//- (CGFloat)rowMarginOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout
+//{
+//    return 50;
+//}
+
+//- (UIEdgeInsets)edgeInsetsOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout
+//{
+//    return UIEdgeInsetsMake(30, 40, 50, 70);
+//}
 
 @end

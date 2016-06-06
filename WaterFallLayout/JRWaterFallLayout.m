@@ -15,6 +15,15 @@ static const CGFloat JRDefaultColumnMargin = 10; // 列间距
 static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 
 @interface JRWaterFallLayout()
+{
+    struct { // 记录代理是否响应选择子
+        BOOL didRespondColumnCount : 1;
+        BOOL didRespondColumnMargin : 1;
+        BOOL didRespondRowMargin : 1;
+        BOOL didRespondEdgeInsets : 1;
+    } _delegateFalgs;
+    
+}
 
 /** cell的布局属性数组 */
 @property (nonatomic, strong) NSMutableArray *attrsArray;
@@ -77,10 +86,10 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
     // 计算最大的Y值
     self.maxY = [self maxYWithColumnHeightsArray:self.columnHeights];
     
+    // 设置代理方法的标志
+    [self setupDelegateFlags];
     
 }
-
-
 
 
 /**
@@ -143,6 +152,17 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 }
 
 #pragma mark - 私有方法
+- (void)setupDelegateFlags
+{
+    _delegateFalgs.didRespondColumnCount = [self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)];
+    
+    _delegateFalgs.didRespondColumnMargin = [self.delegate respondsToSelector:@selector(columnMarginOfWaterFallLayout:)];
+    
+    _delegateFalgs.didRespondRowMargin = [self.delegate respondsToSelector:@selector(rowMarginOfWaterFallLayout:)];
+    
+    _delegateFalgs.didRespondEdgeInsets = [self.delegate respondsToSelector:@selector(edgeInsetsOfWaterFallLayout:)];
+}
+
 - (CGFloat)maxYWithColumnHeightsArray:(NSArray *)array
 {
     __block CGFloat maxY = 0;
@@ -154,41 +174,25 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
     return maxY;
 }
 
-#pragma mark - 代理方法判断
+#pragma mark - 根据情况返回参数
 - (NSUInteger)columnCount
 {
-    if ([self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)]) {
-        return [self.delegate columnCountOfWaterFallLayout:self];
-    } else {
-        return JRDefaultColumnCount;
-    }
+    return _delegateFalgs.didRespondColumnCount ? [self.delegate columnCountOfWaterFallLayout:self] : JRDefaultColumnCount;
 }
 
 - (CGFloat)columnMargin
 {
-    if ([self.delegate respondsToSelector:@selector(columnMarginOfWaterFallLayout:)]) {
-        return [self.delegate columnMarginOfWaterFallLayout:self];
-    } else {
-        return JRDefaultColumnMargin;
-    }
+    return _delegateFalgs.didRespondColumnMargin ? [self.delegate columnMarginOfWaterFallLayout:self] : JRDefaultColumnMargin;
 }
 
 - (CGFloat)rowMargin
 {
-    if ([self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)]) {
-        return [self.delegate rowMarginOfWaterFallLayout:self];
-    } else {
-        return JRDefaultRowMargin;
-    }
+    return _delegateFalgs.didRespondColumnCount ? [self.delegate rowMarginOfWaterFallLayout:self] : JRDefaultRowMargin;
 }
 
 - (UIEdgeInsets)edgeInsets
 {
-    if ([self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)]) {
-        return [self.delegate edgeInsetsOfWaterFallLayout:self];
-    } else {
-        return JRDefaultEdgeInsets;
-    }
+    return _delegateFalgs.didRespondEdgeInsets ? [self.delegate edgeInsetsOfWaterFallLayout:self] : JRDefaultEdgeInsets;
 }
 
 
