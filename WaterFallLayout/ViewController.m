@@ -8,17 +8,30 @@
 
 #import "ViewController.h"
 #import "JRWaterFallLayout.h"
+#import "JRShop.h"
+#import "JRShopCell.h"
 
 @interface ViewController () <UICollectionViewDataSource>
 
 /** collectionView */
 @property (nonatomic, weak) UICollectionView *collectionView;
 
+/** shops */
+@property (nonatomic, strong) NSMutableArray *shops;
+
 @end
 
 @implementation ViewController
 
 static NSString *reuseIdentifier = @"shop";
+
+- (NSMutableArray *)shops
+{
+    if (_shops == nil) {
+        _shops = [NSMutableArray array];
+    }
+    return _shops;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,7 +57,7 @@ static NSString *reuseIdentifier = @"shop";
     self.collectionView = collectionView;
     
     // 注册collectionViewCell
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([JRShopCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -57,10 +70,10 @@ static NSString *reuseIdentifier = @"shop";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // 创建cell
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    JRShopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    // 设置cell的属性
-    
+    // 给cell传递模型
+//    cell.shop = self.shops[indexPath.item];
     
     // 返回cell
     return cell;
