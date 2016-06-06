@@ -10,8 +10,10 @@
 #import "JRWaterFallLayout.h"
 #import "JRShop.h"
 #import "JRShopCell.h"
+#import "MJRefresh.h"
+#import "MJExtension.h"
 
-@interface ViewController () <UICollectionViewDataSource>
+@interface ViewController () <UICollectionViewDataSource, JRWaterFallLayoutDelegate>
 
 /** collectionView */
 @property (nonatomic, weak) UICollectionView *collectionView;
@@ -39,12 +41,17 @@ static NSString *reuseIdentifier = @"shop";
     // 初始化collectionView
     [self setupCollectionView];
     
+    // 第一次进入则自动刷新头部
+    [self.collectionView.mj_header beginRefreshing];
+    
 }
 
 - (void)setupCollectionView
 {
     // 创建瀑布流布局
     JRWaterFallLayout *layout = [[JRWaterFallLayout alloc] init];
+    // 设置代理
+    layout.delegate = self;
     
     // 创建collectionView并且设置frame和layout
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
@@ -58,14 +65,44 @@ static NSString *reuseIdentifier = @"shop";
     
     // 注册collectionViewCell
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([JRShopCell class]) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+    
+    // 为collectionView添加下拉和上拉加载
+    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 清空数组
+            [self.shops removeAllObjects];
+            
+            NSArray *newShops = [JRShop mj_objectArrayWithFilename:@"shops.plist"];
+            [self.shops addObjectsFromArray:newShops];
+            
+            // 刷新数据
+            [self.collectionView reloadData];
+            
+            [self.collectionView.mj_header endRefreshing];
+        });
+    }];
+    [self.collectionView.mj_header beginRefreshing];
+    
+    
+    self.collectionView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+            NSArray *moreShops = [JRShop mj_objectArrayWithFilename:@"shops.plist"];
+            [self.shops addObjectsFromArray:moreShops];
+            
+            // 刷新数据
+            [self.collectionView reloadData];
+            
+            [self.collectionView.mj_footer endRefreshing];
+        });
+    }];
 }
 
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 50;
+    return self.shops.count;
 }
-
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -73,10 +110,19 @@ static NSString *reuseIdentifier = @"shop";
     JRShopCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // 给cell传递模型
-//    cell.shop = self.shops[indexPath.item];
+    cell.shop = self.shops[indexPath.item];
     
     // 返回cell
     return cell;
+}
+
+#pragma mark - <JRWaterFallLayoutDelegate>
+- (CGFloat)waterFallLayout:(JRWaterFallLayout *)waterFallLayout heightForItemAtIndex:(NSUInteger)index width:(CGFloat)width
+{
+    JRShop *shop = self.shops[index];
+    CGFloat shopHeight = [shop.h doubleValue];
+    CGFloat shopWidth = [shop.w doubleValue];
+    return shopHeight * width / shopWidth;
 }
 
 @end

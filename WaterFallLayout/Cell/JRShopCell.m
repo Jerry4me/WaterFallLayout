@@ -7,7 +7,7 @@
 //
 
 #import "JRShopCell.h"
-//#import "UIImageView+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import "JRShop.h"
 
 @interface JRShopCell ()
@@ -22,8 +22,8 @@
 {
     _shop = shop;
     
-//    [self.iconView sd_setImageWithURL:[NSURL URLWithString:shop.img] placeholderImage:[UIImage imageNamed:@"loading"]];
-//    
-//    self.priceLabel.text = shop.price;
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:shop.img] placeholderImage:[UIImage imageNamed:@"loading"]];
+    
+    self.priceLabel.text = shop.price;
 }
 @end

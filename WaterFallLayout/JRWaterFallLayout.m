@@ -8,7 +8,7 @@
 
 #import "JRWaterFallLayout.h"
 
-
+/** 默认参数 */
 static const CGFloat JRDefaultColumnCount = 3; // 列数
 static const CGFloat JRDefaultRowMargin = 10; // 行间距
 static const CGFloat JRDefaultColumnMargin = 10; // 列间距
@@ -56,14 +56,18 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 {
     [super prepareLayout];
     
+    // 清空布局属性数组
+    [self.attrsArray removeAllObjects];
+    // 清空最大高度数组
+    [self.columnHeights removeAllObjects];
+    
     // 初始化列高度
-    for (int i = 0; i < JRDefaultColumnCount; i++) {
-        [self.columnHeights addObject:@(JRDefaultEdgeInsets.top)];
+    for (int i = 0; i < [self columnCount]; i++) {
+        [self.columnHeights addObject:@([self edgeInsets].top)];
     }
     
     // 计算item的attrs
     NSUInteger count = [self.collectionView numberOfItemsInSection:0];
-    
     for (int i = 0; i < count; i++) {
         UICollectionViewLayoutAttributes *attrs = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
         
@@ -71,14 +75,12 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
     }
     
     // 计算最大的Y值
-    self.maxY = 0;
-    [self.columnHeights enumerateObjectsUsingBlock:^(NSNumber  *_Nonnull heightNumber, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([heightNumber doubleValue] > self.maxY) {
-            self.maxY = [heightNumber doubleValue];
-        }
-    }];
+    self.maxY = [self maxYWithColumnHeightsArray:self.columnHeights];
+    
     
 }
+
+
 
 
 /**
@@ -101,7 +103,7 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
     // 开始计算item的x, y, width, height
     CGFloat collectionViewWidth = self.collectionView.frame.size.width;
     
-    CGFloat width = (collectionViewWidth - JRDefaultEdgeInsets.left - JRDefaultEdgeInsets.right - (JRDefaultColumnCount - 1) * JRDefaultColumnMargin) / JRDefaultColumnCount;
+    CGFloat width = (collectionViewWidth - [self edgeInsets].left - [self edgeInsets].right - ([self columnCount] - 1) * [self columnMargin]) / [self columnCount];
     
     // 计算当前item应该摆放在第几列(计算哪一列高度最短)
     __block NSUInteger minColumn = 0; // 默认是第0列
@@ -117,11 +119,11 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
     }];
     
     
-    CGFloat x = JRDefaultEdgeInsets.left + minColumn * (JRDefaultColumnMargin + width);
-    CGFloat y = minHeight + JRDefaultRowMargin;
+    CGFloat x = [self edgeInsets].left + minColumn * ([self columnMargin] + width);
+    CGFloat y = minHeight + [self rowMargin];
     
     
-    CGFloat height = 50 + arc4random_uniform(100);
+    CGFloat height = [self.delegate waterFallLayout:self heightForItemAtIndex:indexPath.item width:width];
     
     attrs.frame = CGRectMake(x, y, width, height);
     
@@ -131,14 +133,63 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
     return attrs;
 }
 
+
 /**
  *  返回collectionView的contentSize
  */
 - (CGSize)collectionViewContentSize
 {
-    return CGSizeMake(0, self.maxY + JRDefaultEdgeInsets.bottom);
+    return CGSizeMake(0, self.maxY + [self edgeInsets].bottom);
 }
 
 #pragma mark - 私有方法
+- (CGFloat)maxYWithColumnHeightsArray:(NSArray *)array
+{
+    __block CGFloat maxY = 0;
+    [self.columnHeights enumerateObjectsUsingBlock:^(NSNumber  *_Nonnull heightNumber, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([heightNumber doubleValue] > self.maxY) {
+            maxY = [heightNumber doubleValue];
+        }
+    }];
+    return maxY;
+}
+
+#pragma mark - 代理方法判断
+- (NSUInteger)columnCount
+{
+    if ([self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)]) {
+        return [self.delegate columnCountOfWaterFallLayout:self];
+    } else {
+        return JRDefaultColumnCount;
+    }
+}
+
+- (CGFloat)columnMargin
+{
+    if ([self.delegate respondsToSelector:@selector(columnMarginOfWaterFallLayout:)]) {
+        return [self.delegate columnMarginOfWaterFallLayout:self];
+    } else {
+        return JRDefaultColumnMargin;
+    }
+}
+
+- (CGFloat)rowMargin
+{
+    if ([self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)]) {
+        return [self.delegate rowMarginOfWaterFallLayout:self];
+    } else {
+        return JRDefaultRowMargin;
+    }
+}
+
+- (UIEdgeInsets)edgeInsets
+{
+    if ([self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)]) {
+        return [self.delegate edgeInsetsOfWaterFallLayout:self];
+    } else {
+        return JRDefaultEdgeInsets;
+    }
+}
+
 
 @end

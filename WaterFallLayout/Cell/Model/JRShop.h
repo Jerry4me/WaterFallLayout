@@ -10,9 +10,9 @@
 
 @interface JRShop : NSObject
 
-@property (nonatomic, strong) NSNumber *height; // 高度
-@property (nonatomic, strong) NSNumber *width; // 宽度
-@property (nonatomic, copy) NSString *image; // 图片urlString
+@property (nonatomic, strong) NSNumber *h; // 高度
+@property (nonatomic, strong) NSNumber *w; // 宽度
+@property (nonatomic, copy) NSString *img; // 图片urlString
 @property (nonatomic, copy) NSString *price; // 价格
 
 @end
