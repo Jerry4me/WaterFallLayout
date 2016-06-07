@@ -65,16 +65,11 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 {
     [super prepareLayout];
     
-    // 清空item布局属性数组
-    [self.attrsArray removeAllObjects];
-    // 清空最大高度数组
-    [self.columnHeights removeAllObjects];
+    // 初始化列最大高度数组
+    [self setupColumnHeightsArray];
     
     // 初始化item布局属性数组
     [self setupAttrsArray];
-    
-    // 初始化列最大高度数组
-    [self setupColumnHeightsArray];
     
     // 设置代理方法的标志
     [self setupDelegateFlags];
@@ -83,9 +78,6 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
     self.maxY = [self maxYWithColumnHeightsArray:self.columnHeights];
     
 }
-
-
-
 
 /**
  *  返回rect范围内的item的布局数组, (这个方法会频繁调用)
@@ -174,6 +166,9 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 
 - (void)setupColumnHeightsArray
 {
+    // 清空最大高度数组
+    [self.columnHeights removeAllObjects];
+    
     // 初始化列高度
     for (int i = 0; i < [self columnCount]; i++) {
         [self.columnHeights addObject:@([self edgeInsets].top)];
@@ -184,6 +179,9 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 
 - (void)setupAttrsArray
 {
+    // 清空item布局属性数组
+    [self.attrsArray removeAllObjects];
+    
     // 计算item的attrs
     NSUInteger count = [self.collectionView numberOfItemsInSection:0];
     for (int i = 0; i < count; i++) {

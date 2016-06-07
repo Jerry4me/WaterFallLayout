@@ -115,7 +115,7 @@ static NSString * const shopCellReuseID = @"shop";
     if (currentPage == 3) {
         self.currentPage = 0;
     } else {
-        self.currentPage += currentPage;
+        self.currentPage++;
     }
     
     NSString *nextPage = [NSString stringWithFormat:@"%lu.plist", self.currentPage];
