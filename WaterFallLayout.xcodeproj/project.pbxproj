@@ -19,7 +19,7 @@
 		33FD944E1D0571F1004E12D9 /* JRShop.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD944D1D0571F1004E12D9 /* JRShop.m */; };
 		33FD94521D0571F9004E12D9 /* JRShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD94501D0571F9004E12D9 /* JRShopCell.m */; };
 		33FD94531D0571F9004E12D9 /* JRShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FD94511D0571F9004E12D9 /* JRShopCell.xib */; };
-		33FD94551D057639004E12D9 /* shops.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FD94541D057639004E12D9 /* shops.plist */; };
+		33FD94551D057639004E12D9 /* 0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FD94541D057639004E12D9 /* 0.plist */; };
 		33FD965F1D057A16004E12D9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FD96491D057A16004E12D9 /* Info.plist */; };
 		33FD96601D057A16004E12D9 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD964C1D057A16004E12D9 /* MJExtensionConst.m */; };
 		33FD96611D057A16004E12D9 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD964E1D057A16004E12D9 /* MJFoundation.m */; };
@@ -66,7 +66,9 @@
 		33FD96D91D057A27004E12D9 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD96C71D057A27004E12D9 /* UIImageView+HighlightedWebCache.m */; };
 		33FD96DA1D057A27004E12D9 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD96C91D057A27004E12D9 /* UIImageView+WebCache.m */; };
 		33FD96DB1D057A27004E12D9 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD96CB1D057A27004E12D9 /* UIView+WebCacheOperation.m */; };
-		33FD96DE1D05A69B004E12D9 /* JRWaterFallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FD96DD1D05A69B004E12D9 /* JRWaterFallView.m */; };
+		33FD96E21D06813B004E12D9 /* 1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FD96DF1D06813B004E12D9 /* 1.plist */; };
+		33FD96E31D06813B004E12D9 /* 2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FD96E01D06813B004E12D9 /* 2.plist */; };
+		33FD96E41D06813B004E12D9 /* 3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FD96E11D06813B004E12D9 /* 3.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +112,7 @@
 		33FD944F1D0571F9004E12D9 /* JRShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRShopCell.h; sourceTree = "<group>"; };
 		33FD94501D0571F9004E12D9 /* JRShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRShopCell.m; sourceTree = "<group>"; };
 		33FD94511D0571F9004E12D9 /* JRShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRShopCell.xib; sourceTree = "<group>"; };
-		33FD94541D057639004E12D9 /* shops.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shops.plist; sourceTree = "<group>"; };
+		33FD94541D057639004E12D9 /* 0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 0.plist; sourceTree = "<group>"; };
 		33FD96491D057A16004E12D9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33FD964A1D057A16004E12D9 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
 		33FD964B1D057A16004E12D9 /* MJExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtensionConst.h; sourceTree = "<group>"; };
@@ -204,8 +206,9 @@
 		33FD96C91D057A27004E12D9 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		33FD96CA1D057A27004E12D9 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		33FD96CB1D057A27004E12D9 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
-		33FD96DC1D05A69B004E12D9 /* JRWaterFallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRWaterFallView.h; sourceTree = "<group>"; };
-		33FD96DD1D05A69B004E12D9 /* JRWaterFallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRWaterFallView.m; sourceTree = "<group>"; };
+		33FD96DF1D06813B004E12D9 /* 1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 1.plist; sourceTree = "<group>"; };
+		33FD96E01D06813B004E12D9 /* 2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 2.plist; sourceTree = "<group>"; };
+		33FD96E11D06813B004E12D9 /* 3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 3.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +279,10 @@
 		33FD94131D056C5B004E12D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				33FD94541D057639004E12D9 /* shops.plist */,
+				33FD94541D057639004E12D9 /* 0.plist */,
+				33FD96DF1D06813B004E12D9 /* 1.plist */,
+				33FD96E01D06813B004E12D9 /* 2.plist */,
+				33FD96E11D06813B004E12D9 /* 3.plist */,
 				33FD94141D056C5B004E12D9 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -305,8 +311,6 @@
 			children = (
 				33FD94461D056DA0004E12D9 /* JRWaterFallLayout.h */,
 				33FD94471D056DA0004E12D9 /* JRWaterFallLayout.m */,
-				33FD96DC1D05A69B004E12D9 /* JRWaterFallView.h */,
-				33FD96DD1D05A69B004E12D9 /* JRWaterFallView.m */,
 			);
 			path = WaterFall;
 			sourceTree = "<group>";
@@ -606,8 +610,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33FD94551D057639004E12D9 /* shops.plist in Resources */,
+				33FD96E31D06813B004E12D9 /* 2.plist in Resources */,
+				33FD94551D057639004E12D9 /* 0.plist in Resources */,
+				33FD96E41D06813B004E12D9 /* 3.plist in Resources */,
 				33FD94231D056C5B004E12D9 /* LaunchScreen.storyboard in Resources */,
+				33FD96E21D06813B004E12D9 /* 1.plist in Resources */,
 				33FD96A51D057A1C004E12D9 /* MJRefresh.bundle in Resources */,
 				33FD965F1D057A16004E12D9 /* Info.plist in Resources */,
 				33FD94531D0571F9004E12D9 /* JRShopCell.xib in Resources */,
@@ -687,7 +694,6 @@
 				33FD96DA1D057A27004E12D9 /* UIImageView+WebCache.m in Sources */,
 				33FD96971D057A1C004E12D9 /* MJRefreshAutoFooter.m in Sources */,
 				33FD96A11D057A1C004E12D9 /* MJRefreshBackStateFooter.m in Sources */,
-				33FD96DE1D05A69B004E12D9 /* JRWaterFallView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

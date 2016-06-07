@@ -65,31 +65,26 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 {
     [super prepareLayout];
     
-    // 清空布局属性数组
+    // 清空item布局属性数组
     [self.attrsArray removeAllObjects];
     // 清空最大高度数组
     [self.columnHeights removeAllObjects];
     
-    // 初始化列高度
-    for (int i = 0; i < [self columnCount]; i++) {
-        [self.columnHeights addObject:@([self edgeInsets].top)];
-    }
+    // 初始化item布局属性数组
+    [self setupAttrsArray];
     
-    // 计算item的attrs
-    NSUInteger count = [self.collectionView numberOfItemsInSection:0];
-    for (int i = 0; i < count; i++) {
-        UICollectionViewLayoutAttributes *attrs = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-        
-        [self.attrsArray addObject:attrs];
-    }
-    
-    // 计算最大的Y值
-    self.maxY = [self maxYWithColumnHeightsArray:self.columnHeights];
+    // 初始化列最大高度数组
+    [self setupColumnHeightsArray];
     
     // 设置代理方法的标志
     [self setupDelegateFlags];
     
+    // 计算最大的Y值
+    self.maxY = [self maxYWithColumnHeightsArray:self.columnHeights];
+    
 }
+
+
 
 
 /**
@@ -152,6 +147,9 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 }
 
 #pragma mark - 私有方法
+/**
+ *  因为返回代理方法调用的频率非常频繁, 所以prepareLayout的时候设置一次标志, 调用代理方法的时候就直接判断即可, 可提升效率
+ */
 - (void)setupDelegateFlags
 {
     _delegateFalgs.didRespondColumnCount = [self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)];
@@ -172,6 +170,29 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
         }
     }];
     return maxY;
+}
+
+- (void)setupColumnHeightsArray
+{
+    // 初始化列高度
+    for (int i = 0; i < [self columnCount]; i++) {
+        [self.columnHeights addObject:@([self edgeInsets].top)];
+    }
+    
+    
+}
+
+- (void)setupAttrsArray
+{
+    // 计算item的attrs
+    NSUInteger count = [self.collectionView numberOfItemsInSection:0];
+    for (int i = 0; i < count; i++) {
+        @autoreleasepool { // 如果item数目过大容易造成内存峰值提高
+            UICollectionViewLayoutAttributes *attrs = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
+            
+            [self.attrsArray addObject:attrs];
+        }
+    }
 }
 
 #pragma mark - 根据情况返回参数
