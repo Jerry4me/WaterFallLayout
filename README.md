@@ -50,21 +50,21 @@ struct { // 记录代理是否响应选择子
         BOOL didRespondColumnMargin : 1;
         BOOL didRespondRowMargin : 1;
         BOOL didRespondEdgeInsets : 1;
-} _delegateFalgs;
+} _delegateFlags;
 
 - (void)setupDelegateFlags
 {
-    _delegateFalgs.didRespondColumnCount = [self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)];
+    _delegateFlags.didRespondColumnCount = [self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)];
     
-    _delegateFalgs.didRespondColumnMargin = [self.delegate respondsToSelector:@selector(columnMarginOfWaterFallLayout:)];
+    _delegateFlags.didRespondColumnMargin = [self.delegate respondsToSelector:@selector(columnMarginOfWaterFallLayout:)];
     
-    _delegateFalgs.didRespondRowMargin = [self.delegate respondsToSelector:@selector(rowMarginOfWaterFallLayout:)];
+    _delegateFlags.didRespondRowMargin = [self.delegate respondsToSelector:@selector(rowMarginOfWaterFallLayout:)];
     
-    _delegateFalgs.didRespondEdgeInsets = [self.delegate respondsToSelector:@selector(edgeInsetsOfWaterFallLayout:)];
+    _delegateFlags.didRespondEdgeInsets = [self.delegate respondsToSelector:@selector(edgeInsetsOfWaterFallLayout:)];
 }
 
 // 那么下次调用方法的时候就变成下面那么优雅了
-_columnCount = _delegateFalgs.didRespondColumnCount ? [self.delegate columnCountOfWaterFallLayout:self] : JRDefaultColumnCount;
+_columnCount = _delegateFlags.didRespondColumnCount ? [self.delegate columnCountOfWaterFallLayout:self] : JRDefaultColumnCount;
 
 </pre>
 
