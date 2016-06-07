@@ -13,12 +13,17 @@
 @protocol JRWaterFallLayoutDelegate <NSObject>
 
 @required
+// 返回index位置下的item的高度
 - (CGFloat)waterFallLayout:(JRWaterFallLayout *)waterFallLayout heightForItemAtIndex:(NSUInteger)index width:(CGFloat)width;
 
 @optional
+// 返回瀑布流显示的列数
 - (NSUInteger)columnCountOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout;
+// 返回行间距
 - (CGFloat)rowMarginOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout;
+// 返回列间距
 - (CGFloat)columnMarginOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout;
+// 返回边缘间距
 - (UIEdgeInsets)edgeInsetsOfWaterFallLayout:(JRWaterFallLayout *)waterFallLayout;
 
 @end
