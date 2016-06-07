@@ -1,17 +1,20 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "ADEBC2662AE703BA99DEE35E3061BB420C36A311",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "ADEBC2662AE703BA99DEE35E3061BB420C36A311" : 0,
     "7C25AC53B95FE9469712D29C518D4ECD1787C7CD" : 0,
-    "E28E36D423EC87798E52E2BF482E9F7A1E6479D6" : 0,
-    "2A8CC76D0984F5186F869B6CBF35034B58A5ACD9" : 0
+    "2A8CC76D0984F5186F869B6CBF35034B58A5ACD9" : 0,
+    "E28E36D423EC87798E52E2BF482E9F7A1E6479D6" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FE0E481C-D9FA-4F8A-8EF6-11B675D3A61D",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "ADEBC2662AE703BA99DEE35E3061BB420C36A311" : "WaterFallLayout\/",
     "7C25AC53B95FE9469712D29C518D4ECD1787C7CD" : "WaterFallLayout\/WaterFallLayout\/Lib\/MJExtension\/",
-    "E28E36D423EC87798E52E2BF482E9F7A1E6479D6" : "WaterFallLayout\/WaterFallLayout\/Lib\/SDWebImage\/",
-    "2A8CC76D0984F5186F869B6CBF35034B58A5ACD9" : "WaterFallLayout\/WaterFallLayout\/Lib\/MJRefresh\/"
+    "2A8CC76D0984F5186F869B6CBF35034B58A5ACD9" : "WaterFallLayout\/WaterFallLayout\/Lib\/MJRefresh\/",
+    "E28E36D423EC87798E52E2BF482E9F7A1E6479D6" : "WaterFallLayout\/WaterFallLayout\/Lib\/SDWebImage\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "WaterFallLayout",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -26,6 +29,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/CoderMJLee\/MJExtension.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7C25AC53B95FE9469712D29C518D4ECD1787C7CD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jerry4me\/WaterFallLayout.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ADEBC2662AE703BA99DEE35E3061BB420C36A311"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/rs\/SDWebImage",

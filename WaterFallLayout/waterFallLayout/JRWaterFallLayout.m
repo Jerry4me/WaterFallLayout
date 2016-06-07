@@ -21,7 +21,7 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
         BOOL didRespondColumnMargin : 1;
         BOOL didRespondRowMargin : 1;
         BOOL didRespondEdgeInsets : 1;
-    } _delegateFalgs;
+    } _delegateFlags;
     
 }
 
@@ -144,13 +144,13 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
  */
 - (void)setupDelegateFlags
 {
-    _delegateFalgs.didRespondColumnCount = [self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)];
+    _delegateFlags.didRespondColumnCount = [self.delegate respondsToSelector:@selector(columnCountOfWaterFallLayout:)];
     
-    _delegateFalgs.didRespondColumnMargin = [self.delegate respondsToSelector:@selector(columnMarginOfWaterFallLayout:)];
+    _delegateFlags.didRespondColumnMargin = [self.delegate respondsToSelector:@selector(columnMarginOfWaterFallLayout:)];
     
-    _delegateFalgs.didRespondRowMargin = [self.delegate respondsToSelector:@selector(rowMarginOfWaterFallLayout:)];
+    _delegateFlags.didRespondRowMargin = [self.delegate respondsToSelector:@selector(rowMarginOfWaterFallLayout:)];
     
-    _delegateFalgs.didRespondEdgeInsets = [self.delegate respondsToSelector:@selector(edgeInsetsOfWaterFallLayout:)];
+    _delegateFlags.didRespondEdgeInsets = [self.delegate respondsToSelector:@selector(edgeInsetsOfWaterFallLayout:)];
 }
 
 - (CGFloat)maxYWithColumnHeightsArray:(NSArray *)array
@@ -196,22 +196,22 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 #pragma mark - 根据情况返回参数
 - (NSUInteger)columnCount
 {
-    return _delegateFalgs.didRespondColumnCount ? [self.delegate columnCountOfWaterFallLayout:self] : JRDefaultColumnCount;
+    return _delegateFlags.didRespondColumnCount ? [self.delegate columnCountOfWaterFallLayout:self] : JRDefaultColumnCount;
 }
 
 - (CGFloat)columnMargin
 {
-    return _delegateFalgs.didRespondColumnMargin ? [self.delegate columnMarginOfWaterFallLayout:self] : JRDefaultColumnMargin;
+    return _delegateFlags.didRespondColumnMargin ? [self.delegate columnMarginOfWaterFallLayout:self] : JRDefaultColumnMargin;
 }
 
 - (CGFloat)rowMargin
 {
-    return _delegateFalgs.didRespondColumnCount ? [self.delegate rowMarginOfWaterFallLayout:self] : JRDefaultRowMargin;
+    return _delegateFlags.didRespondColumnCount ? [self.delegate rowMarginOfWaterFallLayout:self] : JRDefaultRowMargin;
 }
 
 - (UIEdgeInsets)edgeInsets
 {
-    return _delegateFalgs.didRespondEdgeInsets ? [self.delegate edgeInsetsOfWaterFallLayout:self] : JRDefaultEdgeInsets;
+    return _delegateFlags.didRespondEdgeInsets ? [self.delegate edgeInsetsOfWaterFallLayout:self] : JRDefaultEdgeInsets;
 }
 
 
