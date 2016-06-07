@@ -11,35 +11,21 @@
 
 @interface JRWaterFallView()
 
-/** 重用标识 */
-//@property (nonatomic, copy) NSString *reuseID;
+/** 瀑布流布局代理(方便内部修改) */
+@property (nonatomic, weak, readwrite) id<JRWaterFallLayoutDelegate> layoutDelegate;
 
 @end
 
 @implementation JRWaterFallView
 
-
-+ (instancetype)waterFallViewWithFrame:(CGRect)frame delegate:(nonnull id<JRWaterFallLayoutDelegate>)delegate
++ (nullable instancetype)waterFallViewWithFrame:(CGRect)frame layoutDelegate:(nonnull id<JRWaterFallLayoutDelegate>)layoutDelegate
 {
-    // 创建瀑布流布局
     JRWaterFallLayout *layout = [[JRWaterFallLayout alloc] init];
-    layout.delegate = delegate;
-    
-    JRWaterFallView *waterFallView = [[self alloc] initWithFrame:frame collectionViewLayout:layout];
+    JRWaterFallView *waterFallView = [[JRWaterFallView alloc] initWithFrame:frame collectionViewLayout:layout];
+    // 设置瀑布流布局的代理
+    layout.delegate = layoutDelegate;
+    waterFallView.layoutDelegate = layoutDelegate;
     
     return waterFallView;
 }
-
-//- (void)jr_registerClass:(Class)Class forCellWithReuseIdentifier:(NSString *)identifier
-//{
-//    self.reuseID = identifier;
-//    [self registerClass:Class forCellWithReuseIdentifier:identifier];
-//}
-//
-//- (void)jr_registerNib:(UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier
-//{
-//    self.reuseID = identifier;
-//    [self registerNib:nib forCellWithReuseIdentifier:identifier];
-//}
-
 @end

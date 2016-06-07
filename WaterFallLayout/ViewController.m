@@ -47,7 +47,7 @@ static NSString *shopCellReuseID = @"shop";
 - (void)setupCollectionView
 {
     // 创建瀑布流view
-    JRWaterFallView *waterFallView = [JRWaterFallView waterFallViewWithFrame:self.view.bounds delegate:self];
+    JRWaterFallView *waterFallView = [JRWaterFallView waterFallViewWithFrame:self.view.bounds layoutDelegate:self];
     // 设置数据源
     waterFallView.dataSource = self;
     waterFallView.backgroundColor = [UIColor whiteColor];

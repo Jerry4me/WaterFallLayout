@@ -17,23 +17,10 @@
  *  @param frame    瀑布流view的frame
  *  @param delegate 瀑布流布局的代理(可通过代理设置一些参数, 必须传)
  */
-+ (nullable instancetype)waterFallViewWithFrame:(CGRect)frame delegate:(nonnull id<JRWaterFallLayoutDelegate>)delegate;
++ (nullable instancetype)waterFallViewWithFrame:(CGRect)frame layoutDelegate:(nonnull id<JRWaterFallLayoutDelegate>)layoutDelegate;
 
-/**
- *  通过类注册cell
- *
- *  @param Class      类
- *  @param identifier 重用标识
- */
-//- (void)jr_registerClass:(nullable Class)Class forCellWithReuseIdentifier:(nonnull NSString *)identifier;
 
-/**
- *  通过nib注册cell
- *
- *  @param nib        nib
- *  @param identifier 重用标识
- */
-//- (void)jr_registerNib:(nullable UINib *)nib forCellWithReuseIdentifier:(nonnull NSString *)identifier;
-
+/** 瀑布流布局代理 */
+@property (nonatomic, weak, readonly) id<JRWaterFallLayoutDelegate> layoutDelegate;
 
 @end
