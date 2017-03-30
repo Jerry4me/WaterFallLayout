@@ -157,7 +157,8 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 {
     __block CGFloat maxY = 0;
     [self.columnHeights enumerateObjectsUsingBlock:^(NSNumber  *_Nonnull heightNumber, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([heightNumber doubleValue] > self.maxY) {
+        NSLog(@"%@ - %f", heightNumber, self.maxY);
+        if ([heightNumber doubleValue] > maxY) {
             maxY = [heightNumber doubleValue];
         }
     }];
