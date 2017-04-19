@@ -157,7 +157,7 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 {
     __block CGFloat maxY = 0;
     [self.columnHeights enumerateObjectsUsingBlock:^(NSNumber  *_Nonnull heightNumber, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"%@ - %f", heightNumber, self.maxY);
+        
         if ([heightNumber doubleValue] > maxY) {
             maxY = [heightNumber doubleValue];
         }
@@ -207,7 +207,7 @@ static const UIEdgeInsets JRDefaultEdgeInsets = {10, 10, 10, 10}; // edgeInsets
 
 - (CGFloat)rowMargin
 {
-    return _delegateFlags.didRespondColumnCount ? [self.delegate rowMarginOfWaterFallLayout:self] : JRDefaultRowMargin;
+    return _delegateFlags.didRespondRowMargin ? [self.delegate rowMarginOfWaterFallLayout:self] : JRDefaultRowMargin;
 }
 
 - (UIEdgeInsets)edgeInsets
